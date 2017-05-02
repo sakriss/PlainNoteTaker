@@ -10,11 +10,12 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
-    var data:[String] = ["Row 1,", "Row 2", "Row 3"]
+    var data:[String] = ["Row 1", "Row 2", "Row 3"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = "Nizotes"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
