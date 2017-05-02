@@ -29,13 +29,14 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FO0-3Z-7Qp" id="0l8-GQ-lUf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Auc-aR-IBP"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2rd-Wz-6K4"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -50,11 +51,45 @@
                     <navigationItem key="navigationItem" id="1jt-HY-ino"/>
                     <connections>
                         <outlet property="table" destination="f4Y-lC-ywd" id="Ewb-uj-ZWg"/>
+                        <segue destination="Z2K-ly-fON" kind="show" identifier="detail" id="6UO-Ms-PLH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+        </scene>
+        <!--Yo Note-->
+        <scene sceneID="4UG-vw-GUP">
+            <objects>
+                <viewController title="Yo Note" id="Z2K-ly-fON" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uV3-oy-bc8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rs3-Ib-xOi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9GU-Fi-6UO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-IQ-xCx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GaA-IQ-xCx" secondAttribute="trailing" id="2Gu-08-2Kv"/>
+                            <constraint firstItem="GaA-IQ-xCx" firstAttribute="bottom" secondItem="Rs3-Ib-xOi" secondAttribute="top" id="tv0-qy-dmd"/>
+                            <constraint firstItem="GaA-IQ-xCx" firstAttribute="leading" secondItem="9GU-Fi-6UO" secondAttribute="leading" id="vUm-np-gGa"/>
+                            <constraint firstItem="GaA-IQ-xCx" firstAttribute="top" secondItem="9GU-Fi-6UO" secondAttribute="top" id="zhW-Kc-1YB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxn-jd-kwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807.2" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MpF-T5-6Lb">
