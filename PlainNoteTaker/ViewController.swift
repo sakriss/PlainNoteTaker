@@ -11,8 +11,9 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var table: UITableView!
     var data:[String] = []
+    var selectedRow:Int = -1
     var file:String!
-    
+    var newRowText:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +29,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         load()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if selectedRow == -1 {
+            return
+        }
+        data[selectedRow] = newRowText
+        if newRowText == ""{
+         data.remove(at: selectedRow)
+        }
+        table.reloadData()
+        save()
+        
+    }
+    
     func addNote(){
         if (table.isEditing) {
             return
         }
-        let name:String = "Row \(data.count + 1)"
+        let name:String = ""
         data.insert(name, at: 0)
         let indexPath:IndexPath = IndexPath(row: 0, section: 0)
         table.insertRows(at: [indexPath], with: .automatic)
+        table.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         self.performSegue(withIdentifier: "detail", sender: nil)
     }
     
@@ -63,6 +79,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "detail", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailView:DetailViewController = segue.destination as! DetailViewController
+        selectedRow = table.indexPathForSelectedRow!.row
+        detailView.masterView = self
+        detailView.setText(t: data[selectedRow])
     }
     
     func save(){

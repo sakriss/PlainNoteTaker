@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FO0-3Z-7Qp" id="0l8-GQ-lUf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -61,7 +61,7 @@
         <!--Yo Note-->
         <scene sceneID="4UG-vw-GUP">
             <objects>
-                <viewController title="Yo Note" id="Z2K-ly-fON" sceneMemberID="viewController">
+                <viewController title="Yo Note" id="Z2K-ly-fON" customClass="DetailViewController" customModule="PlainNoteTaker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uV3-oy-bc8"/>
                         <viewControllerLayoutGuide type="bottom" id="Rs3-Ib-xOi"/>
@@ -86,6 +86,9 @@
                             <constraint firstItem="GaA-IQ-xCx" firstAttribute="top" secondItem="9GU-Fi-6UO" secondAttribute="top" id="zhW-Kc-1YB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testView" destination="GaA-IQ-xCx" id="gwB-Am-6z3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxn-jd-kwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

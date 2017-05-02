@@ -12,6 +12,7 @@
 		1686B8F11EB82482003EEE50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1686B8EF1EB82482003EEE50 /* Main.storyboard */; };
 		1686B8F31EB82482003EEE50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1686B8F21EB82482003EEE50 /* Assets.xcassets */; };
 		1686B8F61EB82482003EEE50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1686B8F41EB82482003EEE50 /* LaunchScreen.storyboard */; };
+		16B075A71EB843A3002E5060 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B075A61EB843A3002E5060 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1686B8F21EB82482003EEE50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1686B8F51EB82482003EEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1686B8F71EB82482003EEE50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16B075A61EB843A3002E5060 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				1686B8EB1EB82482003EEE50 /* AppDelegate.swift */,
 				1686B8ED1EB82482003EEE50 /* ViewController.swift */,
+				16B075A61EB843A3002E5060 /* DetailViewController.swift */,
 				1686B8EF1EB82482003EEE50 /* Main.storyboard */,
 				1686B8F21EB82482003EEE50 /* Assets.xcassets */,
 				1686B8F41EB82482003EEE50 /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B075A71EB843A3002E5060 /* DetailViewController.swift in Sources */,
 				1686B8EE1EB82482003EEE50 /* ViewController.swift in Sources */,
 				1686B8EC1EB82482003EEE50 /* AppDelegate.swift in Sources */,
 			);
@@ -299,6 +303,7 @@
 				1686B8FC1EB82482003EEE50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
