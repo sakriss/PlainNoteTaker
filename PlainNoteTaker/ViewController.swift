@@ -57,13 +57,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = data[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryType = .disclosureIndicator //sets the > in each cell
         return cell
     }
     
@@ -74,7 +73,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         data.remove(at: indexPath.row)
-        table.deleteRows(at: [indexPath], with: .fade)
+        table.deleteRows(at: [indexPath], with: .left)
         save()
     }
     
@@ -102,7 +101,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             data = loadedData
             table.reloadData()
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
