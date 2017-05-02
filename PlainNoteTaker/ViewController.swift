@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
-    var data:[String] = ["Row 1", "Row 2", "Row 3"]
+    var data:[String] = []
+    var file:String!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +21,22 @@ class ViewController: UIViewController, UITableViewDataSource {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = editButtonItem
+        
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true)
+        file = docDir[0].appending("notes.txt")
+        
+        load()
     }
     
     func addNote(){
-        
+        if (table.isEditing) {
+            return
+        }
         let name:String = "Row \(data.count + 1)"
         data.insert(name, at: 0)
         let indexPath:IndexPath = IndexPath(row: 0, section: 0)
         table.insertRows(at: [indexPath], with: .automatic)
+        save()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +58,23 @@ class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         data.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath], with: .fade)
+        save()
+    }
+    
+    func save(){
+        //UserDefaults.standard.set(data, forKey: "notes")
+        //UserDefaults.standard.synchronize()
+        
+        let newData:NSArray = NSArray(array:data)
+        newData.write(toFile: file, atomically: true)
+    }
+    
+    func load(){
+        if let loadedData = NSArray(contentsOfFile:file) as? [String]{
+            data = loadedData
+            table.reloadData()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
