@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
         </scene>
-        <!--Yo Note-->
+        <!--You're Note-->
         <scene sceneID="4UG-vw-GUP">
             <objects>
-                <viewController title="Yo Note" id="Z2K-ly-fON" customClass="DetailViewController" customModule="PlainNoteTaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="You're Note" id="Z2K-ly-fON" customClass="DetailViewController" customModule="PlainNoteTaker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uV3-oy-bc8"/>
                         <viewControllerLayoutGuide type="bottom" id="Rs3-Ib-xOi"/>
