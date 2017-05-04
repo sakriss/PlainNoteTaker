@@ -67,6 +67,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
+        if  data.isEmpty && !isEditing {
+            return
+        }
         super.setEditing(editing, animated: animated)
         table.setEditing(editing, animated: animated)
     }
@@ -75,6 +78,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         data.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath], with: .left)
         save()
+        if data.isEmpty {
+            isEditing = false
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.data[sourceIndexPath.row]
+        data.remove(at: sourceIndexPath.row)
+        data.insert(movedObject, at: destinationIndexPath.row)
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -97,7 +111,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func load(){
-        if let loadedData = NSArray(contentsOfFile:file) as? [String]{
+        if let loadedData = NSArray(contentsOfFile:file) as? [String] {
             data = loadedData
             table.reloadData()
         }
