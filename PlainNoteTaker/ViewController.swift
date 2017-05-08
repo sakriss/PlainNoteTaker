@@ -42,7 +42,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 data[selectedRow] = newRowText
             }
             else {
-                data.append(newRowText)
+                //data.append(newRowText)
+                data.insert(newRowText, at: 0)
+                //addNote()
             }
         }
         table.reloadData()
@@ -112,12 +114,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if data.isEmpty {
             isEditing = false
         }
-        
     }
     
+    //this is to not allow the rows to be rearranged under the last row
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         if proposedDestinationIndexPath.row >= data.count {
-            //TODO
             return IndexPath(row: data.count-1, section: 0)
         }
         return proposedDestinationIndexPath
