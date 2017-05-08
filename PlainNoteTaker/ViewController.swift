@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var selectedRow:Int = -1
     var file:String!
     var newRowText:String = ""
+    var newNoteCellText:String = "Add note"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         file = docDir[0].appending("notes.txt")
         
         load()
+        
+        table.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,9 +37,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if selectedRow == -1 {
             return
         }
-        data[selectedRow] = newRowText
-        if newRowText == ""{
-         data.remove(at: selectedRow)
+        if !newRowText.isEmpty {
+            if selectedRow < data.count {
+                data[selectedRow] = newRowText
+            }
+            else {
+                data.append(newRowText)
+            }
         }
         table.reloadData()
         save()
@@ -56,13 +63,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return data.count + 1
     }
     
+    
+    //this is setting up the table rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = data[indexPath.row]
-        cell.accessoryType = .disclosureIndicator //sets the > in each cell
+        if indexPath.row < data.count {
+            cell.textLabel?.text = data[indexPath.row]
+            cell.accessoryType = .disclosureIndicator //sets the > in each cell
+        }
+        else {
+            cell.textLabel?.text = newNoteCellText
+        }
         return cell
     }
     
@@ -74,9 +88,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.setEditing(editing, animated: animated)
     }
     
+    //this is setting the last row "Add Note" as not editable
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row < data.count {
+            return .delete
+        }
+        else {
+            return .none
+        }
+    }
+    
+    //this is setting the last row "Add Note" as not moveable
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row < data.count
+    }
+  
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.row < data.count {
         data.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath], with: .left)
+            }
         save()
         if data.isEmpty {
             isEditing = false
@@ -84,11 +115,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.row >= data.count {
+            //TODO
+            return IndexPath(row: data.count-1, section: 0)
+        }
+        return proposedDestinationIndexPath
+    }
+    
+    //allows cells to be moved/arranged
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedObject = self.data[sourceIndexPath.row]
         data.remove(at: sourceIndexPath.row)
         data.insert(movedObject, at: destinationIndexPath.row)
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,12 +138,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let detailView:DetailViewController = segue.destination as! DetailViewController
         selectedRow = table.indexPathForSelectedRow!.row
         detailView.masterView = self
-        detailView.setText(t: data[selectedRow])
+        if selectedRow < data.count {
+            detailView.setText(t: data[selectedRow])
+        }
     }
     
     func save(){
-        //UserDefaults.standard.set(data, forKey: "notes")
-        //UserDefaults.standard.synchronize()
         
         let newData:NSArray = NSArray(array:data)
         newData.write(toFile: file, atomically: true)
