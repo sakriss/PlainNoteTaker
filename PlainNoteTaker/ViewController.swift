@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var selectedRow:Int = -1
     var file:String!
     var newRowText:String = ""
-    var newNoteCellText:String = "Add note"
+    var newNoteCellText:String = "---Tap to add a note---"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             else {
                 //data.append(newRowText)
+                
+                //makes sure to add the new row to the top every time even when added using the Add Note cell
                 data.insert(newRowText, at: 0)
-                //addNote()
             }
         }
         table.reloadData()
@@ -78,9 +79,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         else {
             cell.textLabel?.text = newNoteCellText
+            //cell.textLabel?.textAlignment = .center
         }
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        var lastCell = data.count+1
+//        cell.contentView.backgroundColor = UIColor.blue
+//        
+//    }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         if  data.isEmpty && !isEditing {
@@ -104,7 +112,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row < data.count
     }
-  
+    
+    //this is where we delete rows
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.row < data.count {
         data.remove(at: indexPath.row)
@@ -118,7 +127,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //this is to not allow the rows to be rearranged under the last row
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        if proposedDestinationIndexPath.row >= data.count {
+        if proposedDestinationIndexPath.section == 0 && proposedDestinationIndexPath.row >= data.count {
             return IndexPath(row: data.count-1, section: 0)
         }
         return proposedDestinationIndexPath
