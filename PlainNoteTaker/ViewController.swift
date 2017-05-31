@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     @IBOutlet weak var table: UITableView!
     var data:[String] = []
     var selectedRow:Int = -1
     var file:String!
     var newRowText:String = ""
     var newNoteCellText:String = "---Tap to add a note---"
-
+    
+    @IBOutlet weak var textView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,7 +52,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         table.reloadData()
         save()
-        
     }
     
     func addNote(){
@@ -69,7 +70,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return data.count + 1
     }
     
-    
     //this is setting up the table rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
@@ -79,16 +79,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         else {
             cell.textLabel?.text = newNoteCellText
-            //cell.textLabel?.textAlignment = .center
+            cell.textLabel?.textAlignment = .center
+            cell.contentView.backgroundColor = UIColor.yellow
         }
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        var lastCell = data.count+1
-//        cell.contentView.backgroundColor = UIColor.blue
-//        
-//    }
+    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //        var lastCell = data.count+1
+    //        cell.contentView.backgroundColor = UIColor.blue
+    //
+    //    }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         if  data.isEmpty && !isEditing {
@@ -116,9 +117,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //this is where we delete rows
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.row < data.count {
-        data.remove(at: indexPath.row)
-        table.deleteRows(at: [indexPath], with: .left)
-            }
+            data.remove(at: indexPath.row)
+            table.deleteRows(at: [indexPath], with: .left)
+        }
         save()
         if data.isEmpty {
             isEditing = false
@@ -141,7 +142,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "detail", sender: nil)
+        addNote()
+        //self.performSegue(withIdentifier: "detail", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,12 +167,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             table.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
