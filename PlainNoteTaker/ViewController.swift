@@ -160,16 +160,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func save(){
+        //this is code for saving using default settings
+        UserDefaults.standard.set(data, forKey: "notes")
+        UserDefaults.standard.synchronize()
         
-        let newData:NSArray = NSArray(array:data)
-        newData.write(toFile: file, atomically: true)
+        
+        //this is the code for saving to a file
+        //let newData:NSArray = NSArray(array:data)
+        //newData.write(toFile: file, atomically: true)
     }
     
     func load(){
-        if let loadedData = NSArray(contentsOfFile:file) as? [String] {
+        //this will load the data from the user defaults
+        if let loadedData = UserDefaults.standard.value(forKey: "notes") as? [String]{
             data = loadedData
             table.reloadData()
         }
+        
+        //this is the code for accessing the data via a file
+        //if let loadedData = NSArray(contentsOfFile:file) as? [String] {
+        //    data = loadedData
+        //    table.reloadData()
+        //}
     }
     
     override func didReceiveMemoryWarning() {
