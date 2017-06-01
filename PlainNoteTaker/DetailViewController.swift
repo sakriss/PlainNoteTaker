@@ -22,8 +22,8 @@ class DetailViewController: UIViewController {
         testView.becomeFirstResponder()
         testView.isScrollEnabled = true
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(sender:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
-//        NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(sender:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
         
     }
     deinit {
@@ -37,32 +37,32 @@ class DetailViewController: UIViewController {
         }
     }
     
-//    func animateWithKeyboard(notification: NSNotification) {
-//        
-//        // Based on both Apple's docs and personal experience,
-//        // I assume userInfo and its documented keys are available.
-//        // If you'd like, you can remove the forced unwrapping and add your own default values.
-//        
-//        let userInfo = notification.userInfo!
-//        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-//        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! Double
-//        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! UInt
-//        let moveUp = (notification.name == NSNotification.Name.UIKeyboardWillShow)
-//        
-//        // baseContraint is your Auto Layout constraint that pins the
-//        // text view to the bottom of the superview.
-//        
-//        baseConstraint.constant = moveUp ? -keyboardHeight : 0
-//        
-//        let options = UIViewAnimationOptions(rawValue: curve << 16)
-//        UIView.animate(withDuration: duration, delay: 0, options: options,
-//                                   animations: {
-//                                    self.view.layoutIfNeeded()
-//        },
-//                                   completion: nil
-//        )
-//        
-//    }
+    func animateWithKeyboard(notification: NSNotification) {
+        
+        // Based on both Apple's docs and personal experience,
+        // I assume userInfo and its documented keys are available.
+        // If you'd like, you can remove the forced unwrapping and add your own default values.
+        
+        let userInfo = notification.userInfo!
+        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        let moveUp = (notification.name == NSNotification.Name.UIKeyboardWillShow)
+        
+        // baseContraint is your Auto Layout constraint that pins the
+        // text view to the bottom of the superview.
+        
+        bottomSpacingConstraint.constant = moveUp ? -keyboardHeight : 0
+        
+        let options = UIViewAnimationOptions(rawValue: curve << 16)
+        UIView.animate(withDuration: duration, delay: 0, options: options,
+                                   animations: {
+                                    self.view.layoutIfNeeded()
+        },
+                                   completion: nil
+        )
+        
+    }
     
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)

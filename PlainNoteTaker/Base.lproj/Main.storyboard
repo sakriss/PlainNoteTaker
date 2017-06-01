@@ -96,6 +96,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomSpacingConstraint" destination="tv0-qy-dmd" id="uA6-Px-WT8"/>
                         <outlet property="testView" destination="GaA-IQ-xCx" id="gwB-Am-6z3"/>
                     </connections>
                 </viewController>
