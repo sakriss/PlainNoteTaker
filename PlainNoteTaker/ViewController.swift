@@ -141,9 +141,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         data.insert(movedObject, at: destinationIndexPath.row)
     }
     
+    //this is for detecting if we're tapping on the "add note" cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        addNote()
-        //self.performSegue(withIdentifier: "detail", sender: nil)
+        if indexPath.row >= data.count {
+            addNote()
+        }else {
+            self.performSegue(withIdentifier: "detail", sender: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
