@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         testView.text = text
         testView.becomeFirstResponder()
+        testView.isScrollEnabled = true
     }
     
     func setText(t:String){
