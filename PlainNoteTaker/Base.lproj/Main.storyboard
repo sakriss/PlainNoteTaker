@@ -90,7 +90,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GaA-IQ-xCx" secondAttribute="trailing" id="2Gu-08-2Kv"/>
-                            <constraint firstItem="GaA-IQ-xCx" firstAttribute="bottom" secondItem="Rs3-Ib-xOi" secondAttribute="top" id="tv0-qy-dmd"/>
+                            <constraint firstItem="GaA-IQ-xCx" firstAttribute="bottom" secondItem="Rs3-Ib-xOi" secondAttribute="top" identifier="bottomSpacingConstraint" id="tv0-qy-dmd"/>
                             <constraint firstItem="GaA-IQ-xCx" firstAttribute="leading" secondItem="9GU-Fi-6UO" secondAttribute="leading" id="vUm-np-gGa"/>
                             <constraint firstItem="GaA-IQ-xCx" firstAttribute="top" secondItem="9GU-Fi-6UO" secondAttribute="top" id="zhW-Kc-1YB"/>
                         </constraints>
