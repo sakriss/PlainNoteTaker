@@ -55,35 +55,30 @@ class DetailViewController: UIViewController {
         bottomSpacingConstraint.constant = moveUp ? -keyboardHeight : 0
         
         let options = UIViewAnimationOptions(rawValue: curve << 16)
-        UIView.animate(withDuration: duration, delay: 0, options: options,
-                                   animations: {
-                                    self.view.layoutIfNeeded()
-        },
-                                   completion: nil
-        )
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {self.view.layoutIfNeeded()},completion: nil)
         
     }
     
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            masterView.newRowText = testView.text
-        }
-        
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
-        
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destinationViewController.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        masterView.newRowText = testView.text
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

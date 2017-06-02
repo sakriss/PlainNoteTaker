@@ -16,6 +16,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var newRowText:String = ""
     var newNoteCellText:String = "---Tap to add a note---"
     
+    let deleteRowBuzz = UIImpactFeedbackGenerator(style: .heavy)
+    let addNoteBuzz = UIImpactFeedbackGenerator(style: .light)
+    
     @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
@@ -50,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 data.insert(newRowText, at: 0)
             }
         }
+        
         table.reloadData()
         save()
     }
@@ -64,6 +68,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.insertRows(at: [indexPath], with: .automatic)
         table.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         self.performSegue(withIdentifier: "detail", sender: nil)
+        addNoteBuzz.impactOccurred()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +85,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         else {
             cell.textLabel?.text = newNoteCellText
             cell.textLabel?.textAlignment = .center
-            cell.contentView.backgroundColor = UIColor.yellow
+            cell.contentView.backgroundColor = UIColor.green
         }
         return cell
     }
@@ -119,6 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if indexPath.row < data.count {
             data.remove(at: indexPath.row)
             table.deleteRows(at: [indexPath], with: .left)
+            deleteRowBuzz.impactOccurred()
         }
         save()
         if data.isEmpty {
@@ -154,6 +160,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let detailView:DetailViewController = segue.destination as! DetailViewController
         selectedRow = table.indexPathForSelectedRow!.row
         detailView.masterView = self
+        let backItem = UIBarButtonItem()
+        backItem.title = "Save"
+        navigationItem.backBarButtonItem = backItem
+        
         if selectedRow < data.count {
             detailView.setText(t: data[selectedRow])
         }
