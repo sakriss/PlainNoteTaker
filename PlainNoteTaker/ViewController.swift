@@ -160,6 +160,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let detailView:DetailViewController = segue.destination as! DetailViewController
         selectedRow = table.indexPathForSelectedRow!.row
         detailView.masterView = self
+        
+        //setting up the Save button on the text view page
         let backItem = UIBarButtonItem()
         backItem.title = "Save"
         navigationItem.backBarButtonItem = backItem

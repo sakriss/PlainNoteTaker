@@ -17,6 +17,11 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //sets the right nav button to Back or in this case Save
+        self.navigationItem.hidesBackButton = true
+        let newSaveButton = UIBarButtonItem(title: "Save note", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.save(sender:)))
+        self.navigationItem.rightBarButtonItem = newSaveButton
+        
         // Do any additional setup after loading the view.
         testView.text = text
         testView.becomeFirstResponder()
@@ -26,6 +31,14 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
         
     }
+    
+    func save(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        // Go back to the previous ViewController
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
