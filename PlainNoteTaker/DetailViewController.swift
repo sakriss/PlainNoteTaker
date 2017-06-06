@@ -18,9 +18,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         //sets the right nav button to Back or in this case Save
-        self.navigationItem.hidesBackButton = true
-        let newSaveButton = UIBarButtonItem(title: "Save note", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.save(sender:)))
-        self.navigationItem.rightBarButtonItem = newSaveButton
+        //self.navigationItem.hidesBackButton = true
+        
+        //this is used to set the Save Note on the right side of the UIbar
+        //let newSaveButton = UIBarButtonItem(title: "Save note", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.save(sender:)))
+        //self.navigationItem.rightBarButtonItem = newSaveButton
         
         // Do any additional setup after loading the view.
         testView.text = text
@@ -33,9 +35,8 @@ class DetailViewController: UIViewController {
     }
     
     func save(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        // ...
-        // Go back to the previous ViewController
+        
+        //Go back to the previous ViewController
         _ = navigationController?.popViewController(animated: true)
     }
     

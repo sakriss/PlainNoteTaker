@@ -46,12 +46,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if selectedRow < data.count {
                 data[selectedRow] = newRowText
             }
-            else {
-                //data.append(newRowText)
-                
-                //makes sure to add the new row to the top every time even when added using the Add Note cell
-                data.insert(newRowText, at: 0)
-            }
+            
+        }
+        else {
+            
+            //makes sure to add the new row to the top every time even when added using the Add Note cell
+            //data.insert(newRowText, at: 0)
+            deleteCell(table, forRowAt: IndexPath(row: selectedRow, section: 0))
         }
         
         table.reloadData()
@@ -62,6 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (table.isEditing) {
             return
         }
+        
         let name:String = ""
         data.insert(name, at: 0)
         let indexPath:IndexPath = IndexPath(row: 0, section: 0)
@@ -69,6 +71,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         self.performSegue(withIdentifier: "detail", sender: nil)
         addNoteBuzz.impactOccurred()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,12 +92,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         return cell
     }
-    
-    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    //        var lastCell = data.count+1
-    //        cell.contentView.backgroundColor = UIColor.blue
-    //
-    //    }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         if  data.isEmpty && !isEditing {
@@ -121,6 +118,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //this is where we delete rows
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteCell(tableView, forRowAt: indexPath)
+        }
+        //        if indexPath.row < data.count {
+        //            data.remove(at: indexPath.row)
+        //            table.deleteRows(at: [indexPath], with: .left)
+        //            deleteRowBuzz.impactOccurred()
+        //        }
+        //        save()
+        //        if data.isEmpty {
+        //            isEditing = false
+        //        }
+    }
+    
+    // my own function to delete the rows
+    func deleteCell(_ tableView: UITableView, forRowAt indexPath: IndexPath){
         if indexPath.row < data.count {
             data.remove(at: indexPath.row)
             table.deleteRows(at: [indexPath], with: .left)
@@ -163,7 +176,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //setting up the Save button on the text view page
         let backItem = UIBarButtonItem()
-        backItem.title = "Save"
+        backItem.title = "Save/Back"
         navigationItem.backBarButtonItem = backItem
         
         if selectedRow < data.count {
