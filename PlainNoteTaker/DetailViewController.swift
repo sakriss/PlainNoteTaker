@@ -32,6 +32,27 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
         
+        
+        addCustomMenu()
+        
+        
+    }
+    
+    func addCustomMenu() {
+        let changeTextColor = UIMenuItem(title: "Green", action: #selector(changeColor))
+        UIMenuController.shared.menuItems = [changeTextColor]
+    }
+    
+    func changeColor() {
+        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSForegroundColorAttributeName: UIColor.green]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+
+        }
     }
     
     func save(sender: UIBarButtonItem) {
