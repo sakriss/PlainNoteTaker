@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var newRowText:String = ""
     var newNoteCellText:String = "---Tap to add a note---"
     
+    
     let deleteRowBuzz = UIImpactFeedbackGenerator(style: .heavy)
     let addNoteBuzz = UIImpactFeedbackGenerator(style: .light)
     
