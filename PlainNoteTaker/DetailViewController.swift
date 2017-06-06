@@ -39,11 +39,13 @@ class DetailViewController: UIViewController {
     }
     
     func addCustomMenu() {
-        let changeTextColor = UIMenuItem(title: "Green", action: #selector(changeColor))
-        UIMenuController.shared.menuItems = [changeTextColor]
+        let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
+        let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
+        let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack]
     }
     
-    func changeColor() {
+    func changeColorGreen() {
         if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
@@ -54,6 +56,30 @@ class DetailViewController: UIViewController {
 
         }
     }
+    func changeColorRed() {
+        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSForegroundColorAttributeName: UIColor.red]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
+    
+    func changeColorBlack() {
+        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSForegroundColorAttributeName: UIColor.black]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
+    
     
     func save(sender: UIBarButtonItem) {
         
