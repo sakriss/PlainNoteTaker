@@ -158,7 +158,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let movedObject = self.data[sourceIndexPath.row]
         data.remove(at: sourceIndexPath.row)
         data.insert(movedObject, at: destinationIndexPath.row)
-        save()
+        
     }
     
     //this is for detecting if we're tapping on the "add note" cell

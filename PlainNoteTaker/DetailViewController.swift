@@ -42,7 +42,9 @@ class DetailViewController: UIViewController {
         let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
         let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
         let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack]
+        let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
+        let changeTextStyleItalic = UIMenuItem(title: "Italic", action: #selector(changeStyleItalic))
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic]
     }
     
     func changeColorGreen() {
@@ -80,6 +82,29 @@ class DetailViewController: UIViewController {
         }
     }
     
+    func changeStyleBold() {
+        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.0)]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
+    
+    func changeStyleItalic() {
+        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSFontAttributeName: UIFont.italicSystemFont(ofSize: 14.0)]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
     
     func save(sender: UIBarButtonItem) {
         
