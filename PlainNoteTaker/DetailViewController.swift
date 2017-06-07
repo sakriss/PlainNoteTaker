@@ -43,7 +43,8 @@ class DetailViewController: UIViewController {
         let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
         let changeTextStyleItalic = UIMenuItem(title: "Italic", action: #selector(changeStyleItalic))
         let changeTextStylePlain = UIMenuItem(title: "Plain", action: #selector(changeStylePlain))
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic, changeTextStylePlain]
+        let changeTextHighlight = UIMenuItem(title: "Highlight", action: #selector(changeHighlight))
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic, changeTextStylePlain,changeTextHighlight]
     }
     
     func changeColorGreen() {
@@ -109,7 +110,19 @@ class DetailViewController: UIViewController {
         if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightRegular)]
+            let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightRegular), NSBackgroundColorAttributeName: UIColor.white]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
+    
+    func changeHighlight() {
+        if let range = testView.selectedTextRange {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSBackgroundColorAttributeName: UIColor.yellow]
             string.addAttributes(attributes, range: testView.selectedRange)
             testView.attributedText = string
             testView.selectedTextRange = range
