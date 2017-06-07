@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     @IBOutlet weak var table: UITableView!
-    var data:[String] = []
+    var data:[NSMutableAttributedString] = []
     var selectedRow:Int = -1
     var file:String!
-    var newRowText:String = ""
-    var newNoteCellText:String = "---Tap to add a note---"
+    var newRowText = NSMutableAttributedString(string: "")
+    var newNoteCellText = NSMutableAttributedString(string: "---Tap to add a note---")
     
     
     let deleteRowBuzz = UIImpactFeedbackGenerator(style: .heavy)
@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if selectedRow == -1 {
             return
         }
-        if !newRowText.isEmpty {
+        if !newRowText.string.isEmpty {
             if selectedRow < data.count {
                 data[selectedRow] = newRowText
             }
@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         let name:String = ""
-        data.insert(name, at: 0)
+        data.insert(NSMutableAttributedString(string: name), at: 0)
         let indexPath:IndexPath = IndexPath(row: 0, section: 0)
         table.insertRows(at: [indexPath], with: .automatic)
         table.selectRow(at: indexPath, animated: true, scrollPosition: .none)
@@ -83,11 +83,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         if indexPath.row < data.count {
-            cell.textLabel?.text = data[indexPath.row]
+            cell.textLabel?.attributedText = data[indexPath.row]
             cell.accessoryType = .disclosureIndicator //sets the > in each cell
         }
         else {
-            cell.textLabel?.text = newNoteCellText
+            cell.textLabel?.attributedText = newNoteCellText
             cell.textLabel?.textAlignment = .center
             cell.contentView.backgroundColor = UIColor.green
         }
@@ -188,7 +188,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func save(){
         //this is code for saving using default settings
-        UserDefaults.standard.set(data, forKey: "notes")
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: data)
+        UserDefaults.standard.set(encodedData, forKey: "notes")
         UserDefaults.standard.synchronize()
         
         
@@ -199,9 +200,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func load(){
         //this will load the data from the user defaults
-        if let loadedData = UserDefaults.standard.value(forKey: "notes") as? [String]{
-            data = loadedData
-            table.reloadData()
+        if let loadedData  = UserDefaults.standard.object(forKey: "notes") as? Data {
+            if let decodedData = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [NSMutableAttributedString] {
+                data = decodedData
+                table.reloadData()
+            }
         }
         
         //this is the code for accessing the data via a file

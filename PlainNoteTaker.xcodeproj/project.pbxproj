@@ -162,8 +162,8 @@
 				16B075A61EB843A3002E5060 /* DetailViewController.swift */,
 				1686B8EF1EB82482003EEE50 /* Main.storyboard */,
 				1686B8F21EB82482003EEE50 /* Assets.xcassets */,
-				1686B8F41EB82482003EEE50 /* LaunchScreen.storyboard */,
 				1686B8F71EB82482003EEE50 /* Info.plist */,
+				1686B8F41EB82482003EEE50 /* LaunchScreen.storyboard */,
 			);
 			path = PlainNoteTaker;
 			sourceTree = "<group>";

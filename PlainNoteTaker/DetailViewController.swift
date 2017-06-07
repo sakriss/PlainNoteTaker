@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var testView: UITextView!
-    var text:String = ""
+    var text = NSMutableAttributedString(string: "")
     var masterView:ViewController!
     
     override func viewDidLoad() {
@@ -25,16 +25,14 @@ class DetailViewController: UIViewController {
         //self.navigationItem.rightBarButtonItem = newSaveButton
         
         // Do any additional setup after loading the view.
-        testView.text = text
+        testView.attributedText = text
         testView.becomeFirstResponder()
         testView.isScrollEnabled = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
         
-        
         addCustomMenu()
-        
         
     }
     
@@ -48,7 +46,7 @@ class DetailViewController: UIViewController {
     }
     
     func changeColorGreen() {
-        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+        if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSForegroundColorAttributeName: UIColor.green]
@@ -59,7 +57,7 @@ class DetailViewController: UIViewController {
         }
     }
     func changeColorRed() {
-        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+        if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSForegroundColorAttributeName: UIColor.red]
@@ -71,7 +69,7 @@ class DetailViewController: UIViewController {
     }
     
     func changeColorBlack() {
-        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+        if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSForegroundColorAttributeName: UIColor.black]
@@ -83,7 +81,7 @@ class DetailViewController: UIViewController {
     }
     
     func changeStyleBold() {
-        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+        if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0)]
@@ -95,7 +93,7 @@ class DetailViewController: UIViewController {
     }
     
     func changeStyleItalic() {
-        if let range = testView.selectedTextRange, let selectedText = testView.text(in: range) {
+        if let range = testView.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSFontAttributeName: UIFont.italicSystemFont(ofSize: 15.0)]
@@ -116,10 +114,10 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func setText(t:String){
+    func setText(t:NSMutableAttributedString){
         text = t
         if isViewLoaded {
-            testView.text = t
+            testView.attributedText = t
         }
     }
     
@@ -147,7 +145,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        masterView.newRowText = testView.text
+        masterView.newRowText = NSMutableAttributedString(attributedString: testView.attributedText)
     }
     
     override func didReceiveMemoryWarning() {
