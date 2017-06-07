@@ -42,7 +42,8 @@ class DetailViewController: UIViewController {
         let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
         let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
         let changeTextStyleItalic = UIMenuItem(title: "Italic", action: #selector(changeStyleItalic))
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic]
+        let changeTextStylePlain = UIMenuItem(title: "Plain", action: #selector(changeStylePlain))
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic, changeTextStylePlain]
     }
     
     func changeColorGreen() {
@@ -97,6 +98,18 @@ class DetailViewController: UIViewController {
             
             let string = NSMutableAttributedString(attributedString: testView.attributedText)
             let attributes = [NSFontAttributeName: UIFont.italicSystemFont(ofSize: 15.0)]
+            string.addAttributes(attributes, range: testView.selectedRange)
+            testView.attributedText = string
+            testView.selectedTextRange = range
+            
+        }
+    }
+    
+    func changeStylePlain() {
+        if let range = testView.selectedTextRange {
+            
+            let string = NSMutableAttributedString(attributedString: testView.attributedText)
+            let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightRegular)]
             string.addAttributes(attributes, range: testView.selectedRange)
             testView.attributedText = string
             testView.selectedTextRange = range
