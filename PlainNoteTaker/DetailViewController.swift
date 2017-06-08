@@ -37,6 +37,7 @@ class DetailViewController: UIViewController {
     }
     
     func addCustomMenu() {
+        
         let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
         let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
         let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
