@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var testView: UITextView!
+    @IBOutlet weak var testView: ScottsCoolTextView!
     var text = NSMutableAttributedString(string: "")
     var masterView:ViewController!
     
@@ -32,104 +32,12 @@ class DetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
         
-        addCustomMenu()
         
     }
     
-    func addCustomMenu() {
-        
-        let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
-        let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
-        let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
-        let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
-        let changeTextStyleItalic = UIMenuItem(title: "Italic", action: #selector(changeStyleItalic))
-        let changeTextStylePlain = UIMenuItem(title: "Plain", action: #selector(changeStylePlain))
-        let changeTextHighlight = UIMenuItem(title: "Highlight", action: #selector(changeHighlight))
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic, changeTextStylePlain,changeTextHighlight]
-    }
     
-    func changeColorGreen() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSForegroundColorAttributeName: UIColor.green]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-
-        }
-    }
-    func changeColorRed() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSForegroundColorAttributeName: UIColor.red]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
     
-    func changeColorBlack() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSForegroundColorAttributeName: UIColor.black]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
     
-    func changeStyleBold() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15.0)]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
-    
-    func changeStyleItalic() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSFontAttributeName: UIFont.italicSystemFont(ofSize: 15.0)]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
-    
-    func changeStylePlain() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightRegular), NSBackgroundColorAttributeName: UIColor.clear]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
-    
-    func changeHighlight() {
-        if let range = testView.selectedTextRange {
-            
-            let string = NSMutableAttributedString(attributedString: testView.attributedText)
-            let attributes = [NSBackgroundColorAttributeName: UIColor.yellow]
-            string.addAttributes(attributes, range: testView.selectedRange)
-            testView.attributedText = string
-            testView.selectedTextRange = range
-            
-        }
-    }
     
     func save(sender: UIBarButtonItem) {
         
