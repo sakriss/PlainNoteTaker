@@ -14,6 +14,7 @@ class ScottsCoolTextView: UITextView {
         didSet {
             if inCustomMenu {
                 addCustomMenu()
+                //this will show my new custom menu once you tap on Markup
                 UIMenuController.shared.setMenuVisible(true, animated: true)
             }
             else {
@@ -29,8 +30,10 @@ class ScottsCoolTextView: UITextView {
     }
     
     func addCustomButton() {
+        //this is where we are creating the custom 'Markup' menu button on the default row
         let goToMarkupMenuItem = UIMenuItem(title: "Markup", action: #selector(goToMarkupMenu))
         UIMenuController.shared.menuItems = [goToMarkupMenuItem]
+        
     }
 
     func addCustomMenu() {
@@ -55,11 +58,21 @@ class ScottsCoolTextView: UITextView {
              #selector(changeStylePlain),
              #selector(changeHighlight):
             return inCustomMenu
+        case #selector(delete(_:)),
+             #selector(toggleItalics(_:)),
+             #selector(makeTextWritingDirectionLeftToRight(_:)),
+             #selector(makeTextWritingDirectionRightToLeft(_:)),
+             #selector(toggleItalics(_:)),
+             #selector(toggleBoldface(_:)),
+             #selector(toggleUnderline(_:)):
+            return false
         default:
+            
             return !inCustomMenu
         }
     }
-    
+
+
     func goToMarkupMenu() {
         inCustomMenu = true
     }
