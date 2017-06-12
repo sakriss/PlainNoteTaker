@@ -37,26 +37,29 @@ class ScottsCoolTextView: UITextView {
     }
 
     func addCustomMenu() {
-        
         let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
         let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
         let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
+        let changeTextColorOrange = UIMenuItem(title: "Orange", action: #selector(changeColorOrange))
         let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
         let changeTextStyleItalic = UIMenuItem(title: "Italic", action: #selector(changeStyleItalic))
-        let changeTextStylePlain = UIMenuItem(title: "Plain", action: #selector(changeStylePlain))
+        let changeTextStylePlain = UIMenuItem(title: "Undo Style", action: #selector(changeStylePlain))
         let changeTextHighlight = UIMenuItem(title: "Highlight", action: #selector(changeHighlight))
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic, changeTextStylePlain,changeTextHighlight]
+        
+        //this is setting up the menu and displaying them in this particular order
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorOrange,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic,changeTextHighlight,changeTextStylePlain]
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         switch action {
         case #selector(changeColorGreen),
              #selector(changeColorRed),
+             #selector(changeColorOrange),
              #selector(changeColorBlack),
              #selector(changeStyleBold),
              #selector(changeStyleItalic),
-             #selector(changeStylePlain),
-             #selector(changeHighlight):
+             #selector(changeHighlight),
+            #selector(changeStylePlain):
             return inCustomMenu
         default:
             if inCustomMenu {
@@ -83,12 +86,26 @@ class ScottsCoolTextView: UITextView {
             
         }
     }
+    
     func changeColorRed() {
         inCustomMenu = false
         if let range = self.selectedTextRange {
             
             let string = NSMutableAttributedString(attributedString: self.attributedText)
             let attributes = [NSForegroundColorAttributeName: UIColor.red]
+            string.addAttributes(attributes, range: self.selectedRange)
+            self.attributedText = string
+            self.selectedTextRange = range
+            
+        }
+    }
+    
+    func changeColorOrange() {
+        inCustomMenu = false
+        if let range = self.selectedTextRange {
+            
+            let string = NSMutableAttributedString(attributedString: self.attributedText)
+            let attributes = [NSForegroundColorAttributeName: UIColor.orange]
             string.addAttributes(attributes, range: self.selectedRange)
             self.attributedText = string
             self.selectedTextRange = range
