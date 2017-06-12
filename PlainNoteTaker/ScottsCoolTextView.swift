@@ -58,17 +58,11 @@ class ScottsCoolTextView: UITextView {
              #selector(changeStylePlain),
              #selector(changeHighlight):
             return inCustomMenu
-        case #selector(delete(_:)),
-             #selector(toggleItalics(_:)),
-             #selector(makeTextWritingDirectionLeftToRight(_:)),
-             #selector(makeTextWritingDirectionRightToLeft(_:)),
-             #selector(toggleItalics(_:)),
-             #selector(toggleBoldface(_:)),
-             #selector(toggleUnderline(_:)):
-            return false
         default:
-            
-            return !inCustomMenu
+            if inCustomMenu {
+                return false
+            }
+            return super.canPerformAction(action, withSender: sender)
         }
     }
 
