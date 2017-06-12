@@ -39,6 +39,7 @@ class ScottsCoolTextView: UITextView {
     func addCustomMenu() {
         let changeTextColorGreen = UIMenuItem(title: "Green", action: #selector(changeColorGreen))
         let changeTextColorRed = UIMenuItem(title: "Red", action: #selector(changeColorRed))
+        let changeTextColorBlue = UIMenuItem(title: "Blue", action: #selector(changeColorBlue))
         let changeTextColorBlack = UIMenuItem(title: "Black", action: #selector(changeColorBlack))
         let changeTextColorOrange = UIMenuItem(title: "Orange", action: #selector(changeColorOrange))
         let changeTextStyleBold = UIMenuItem(title: "Bold", action: #selector(changeStyleBold))
@@ -47,13 +48,14 @@ class ScottsCoolTextView: UITextView {
         let changeTextHighlight = UIMenuItem(title: "Highlight", action: #selector(changeHighlight))
         
         //this is setting up the menu and displaying them in this particular order
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorOrange,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic,changeTextHighlight,changeTextStylePlain]
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlue,changeTextColorOrange,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic,changeTextHighlight,changeTextStylePlain]
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         switch action {
         case #selector(changeColorGreen),
              #selector(changeColorRed),
+             #selector(changeColorBlue),
              #selector(changeColorOrange),
              #selector(changeColorBlack),
              #selector(changeStyleBold),
@@ -93,6 +95,18 @@ class ScottsCoolTextView: UITextView {
             
             let string = NSMutableAttributedString(attributedString: self.attributedText)
             let attributes = [NSForegroundColorAttributeName: UIColor.red]
+            string.addAttributes(attributes, range: self.selectedRange)
+            self.attributedText = string
+            self.selectedTextRange = range
+            
+        }
+    }
+    func changeColorBlue() {
+        inCustomMenu = false
+        if let range = self.selectedTextRange {
+            
+            let string = NSMutableAttributedString(attributedString: self.attributedText)
+            let attributes = [NSForegroundColorAttributeName: UIColor.blue]
             string.addAttributes(attributes, range: self.selectedRange)
             self.attributedText = string
             self.selectedTextRange = range
