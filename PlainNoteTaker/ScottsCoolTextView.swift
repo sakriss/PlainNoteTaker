@@ -23,6 +23,35 @@ class ScottsCoolTextView: UITextView {
         }
     }
     
+    override func paste(_ sender: Any?) {
+        
+        if let image = UIPasteboard.general.image {
+            
+            //resize the image
+            let newWidth = self.frame.width * 0.6
+            let newSize = CGSize(width: newWidth, height: newWidth * (image.size.height/image.size.width))
+            UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
+            image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            let textAttachment = NSTextAttachment()
+            textAttachment.image = resizedImage
+            
+            let mutableAttributedText = NSMutableAttributedString(attributedString: attributedText)
+            let attrs = mutableAttributedText.attributes(at: mutableAttributedText.length-1, effectiveRange: nil)
+            mutableAttributedText.append(NSAttributedString(string: "\n"))
+            mutableAttributedText.append(NSAttributedString(attachment: textAttachment))
+            mutableAttributedText.append(NSAttributedString(string: "\n"))
+            mutableAttributedText.setAttributes(attrs, range: NSMakeRange(mutableAttributedText.length-1, 1))
+            
+            attributedText = mutableAttributedText
+        }
+        else {
+            super.paste(sender)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -63,6 +92,13 @@ class ScottsCoolTextView: UITextView {
              #selector(changeHighlight),
             #selector(changeStylePlain):
             return inCustomMenu
+        case #selector(UIResponderStandardEditActions.paste(_:)):
+            if inCustomMenu {
+                return false
+            }
+            else {
+                return UIPasteboard.general.hasImages || UIPasteboard.general.hasStrings
+            }
         default:
             if inCustomMenu {
                 return false

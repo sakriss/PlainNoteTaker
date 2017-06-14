@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         file = docDir[0].appending("notes.txt")
         
         load()
-        
+
         table.tableFooterView = UIView()
     }
     

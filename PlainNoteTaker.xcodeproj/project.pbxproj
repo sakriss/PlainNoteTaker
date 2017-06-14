@@ -18,8 +18,8 @@
 
 /* Begin PBXFileReference section */
 		160031051EE9FC0E00BAA56F /* ScottsCoolTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScottsCoolTextView.swift; sourceTree = "<group>"; };
-		16095CA51EF1D5960000CF49 /* PlainNoteTaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = PlainNoteTaker.app; path = "/Users/skriss/SwiftProjects/PlainNoteTaker/build/Release-iphoneos/PlainNoteTaker.app"; sourceTree = "<absolute>"; };
 		16095CA61EF1D5E20000CF49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlainNoteTaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1686B8EB1EB82482003EEE50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1686B8ED1EB82482003EEE50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1686B8F01EB82482003EEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				1686B8EA1EB82482003EEE50 /* PlainNoteTaker */,
+				16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,7 +79,7 @@
 			);
 			name = PlainNoteTaker;
 			productName = PlainNoteTaker;
-			productReference = 16095CA51EF1D5960000CF49 /* PlainNoteTaker.app */;
+			productReference = 16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -93,7 +94,6 @@
 				TargetAttributes = {
 					1686B8E71EB82482003EEE50 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = SJGQK6GQ37;
 						ProvisioningStyle = Automatic;
 					};
 				};
