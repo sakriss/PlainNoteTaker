@@ -23,13 +23,6 @@ class ScottsCoolTextView: UITextView {
         }
     }
     
-    var defaultAttributes:[String:Any] {
-        if let font = self.font, let color = self.textColor {
-            return [NSFontAttributeName: font, NSForegroundColorAttributeName: color]
-        }
-        return [:]
-    }
-    
     override func paste(_ sender: Any?) {
         
         if let image = UIPasteboard.general.image {
@@ -46,11 +39,8 @@ class ScottsCoolTextView: UITextView {
             textAttachment.image = resizedImage
             
             let mutableAttributedText = NSMutableAttributedString(attributedString: attributedText)
-            var attrs = defaultAttributes
-            if mutableAttributedText.length > 0 {
-                attrs = mutableAttributedText.attributes(at: mutableAttributedText.length-1, effectiveRange: nil)
-            }
             mutableAttributedText.append(NSAttributedString(string: "\n"))
+            let attrs = mutableAttributedText.attributes(at: mutableAttributedText.length-1, effectiveRange: nil)
             mutableAttributedText.append(NSAttributedString(attachment: textAttachment))
             mutableAttributedText.append(NSAttributedString(string: "\n"))
             mutableAttributedText.setAttributes(attrs, range: NSMakeRange(mutableAttributedText.length-1, 1))
