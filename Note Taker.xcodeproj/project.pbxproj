@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		160031051EE9FC0E00BAA56F /* ScottsCoolTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScottsCoolTextView.swift; sourceTree = "<group>"; };
 		16095CA61EF1D5E20000CF49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlainNoteTaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16095CA81EF1DE970000CF49 /* Note Taker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Taker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1686B8EB1EB82482003EEE50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1686B8ED1EB82482003EEE50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1686B8F01EB82482003EEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				1686B8EA1EB82482003EEE50 /* PlainNoteTaker */,
-				16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */,
+				16095CA81EF1DE970000CF49 /* Note Taker.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,9 +65,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1686B8E71EB82482003EEE50 /* PlainNoteTaker */ = {
+		1686B8E71EB82482003EEE50 /* Note Taker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1686B8FA1EB82482003EEE50 /* Build configuration list for PBXNativeTarget "PlainNoteTaker" */;
+			buildConfigurationList = 1686B8FA1EB82482003EEE50 /* Build configuration list for PBXNativeTarget "Note Taker" */;
 			buildPhases = (
 				1686B8E41EB82482003EEE50 /* Sources */,
 				1686B8E51EB82482003EEE50 /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = PlainNoteTaker;
+			name = "Note Taker";
 			productName = PlainNoteTaker;
-			productReference = 16095CA81EF1DE970000CF49 /* PlainNoteTaker.app */;
+			productReference = 16095CA81EF1DE970000CF49 /* Note Taker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1686B8E31EB82482003EEE50 /* Build configuration list for PBXProject "PlainNoteTaker" */;
+			buildConfigurationList = 1686B8E31EB82482003EEE50 /* Build configuration list for PBXProject "Note Taker" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -111,7 +111,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1686B8E71EB82482003EEE50 /* PlainNoteTaker */,
+				1686B8E71EB82482003EEE50 /* Note Taker */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +285,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1686B8E31EB82482003EEE50 /* Build configuration list for PBXProject "PlainNoteTaker" */ = {
+		1686B8E31EB82482003EEE50 /* Build configuration list for PBXProject "Note Taker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1686B8F81EB82482003EEE50 /* Debug */,
@@ -294,7 +294,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		1686B8FA1EB82482003EEE50 /* Build configuration list for PBXNativeTarget "PlainNoteTaker" */ = {
+		1686B8FA1EB82482003EEE50 /* Build configuration list for PBXNativeTarget "Note Taker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1686B8FB1EB82482003EEE50 /* Debug */,
