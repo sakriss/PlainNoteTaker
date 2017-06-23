@@ -23,6 +23,8 @@ class ScottsCoolTextView: UITextView {
         }
     }
     
+    public var attributeTextHolder = NSMutableAttributedString()
+    
     override func paste(_ sender: Any?) {
         
         if let image = UIPasteboard.general.image {
@@ -39,6 +41,8 @@ class ScottsCoolTextView: UITextView {
             textAttachment.image = resizedImage
             
             let mutableAttributedText = NSMutableAttributedString(attributedString: attributedText)
+            
+            //this is setting a space before and after the pasted item
             mutableAttributedText.append(NSAttributedString(string: "\n"))
             let attrs = mutableAttributedText.attributes(at: mutableAttributedText.length-1, effectiveRange: nil)
             mutableAttributedText.append(NSAttributedString(attachment: textAttachment))
@@ -76,8 +80,11 @@ class ScottsCoolTextView: UITextView {
         let changeTextStylePlain = UIMenuItem(title: "Undo Style", action: #selector(changeStylePlain))
         let changeTextHighlight = UIMenuItem(title: "Highlight", action: #selector(changeHighlight))
         
+        
         //this is setting up the menu and displaying them in this particular order
-        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlue,changeTextColorOrange,changeTextColorBlack,changeTextStyleBold,changeTextStyleItalic,changeTextHighlight,changeTextStylePlain]
+        UIMenuController.shared.menuItems = [changeTextColorGreen,changeTextColorRed,changeTextColorBlue,
+                                             changeTextColorOrange,changeTextColorBlack,changeTextStyleBold,
+                                             changeTextStyleItalic,changeTextHighlight,changeTextStylePlain]
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
