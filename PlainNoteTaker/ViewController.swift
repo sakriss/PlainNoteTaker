@@ -79,9 +79,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return data.count + 1
     }
     
+//    //setting up the cell height
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 60.00
+//    }
+    
     //this is setting up the table rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        
+        //MARK: word wrapping in cell
+        cell.textLabel?.numberOfLines=0 // line wrap
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
         if indexPath.row < data.count {
             cell.textLabel?.attributedText = data[indexPath.row]
             cell.accessoryType = .disclosureIndicator //sets the > in each cell

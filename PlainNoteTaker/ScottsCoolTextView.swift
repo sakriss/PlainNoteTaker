@@ -23,6 +23,8 @@ class ScottsCoolTextView: UITextView {
         }
     }
     
+    
+    
     public var attributeTextHolder = NSMutableAttributedString()
     
     override func paste(_ sender: Any?) {

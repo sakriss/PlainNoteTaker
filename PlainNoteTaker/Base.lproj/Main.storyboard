@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PlainNoteTaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Note_Taker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -62,7 +62,7 @@
         <!--Your Note-->
         <scene sceneID="4UG-vw-GUP">
             <objects>
-                <viewController title="Your Note" id="Z2K-ly-fON" customClass="DetailViewController" customModule="PlainNoteTaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Your Note" id="Z2K-ly-fON" customClass="DetailViewController" customModule="Note_Taker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uV3-oy-bc8"/>
                         <viewControllerLayoutGuide type="bottom" id="Rs3-Ib-xOi"/>
@@ -71,7 +71,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-IQ-xCx" customClass="ScottsCoolTextView" customModule="PlainNoteTaker" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GaA-IQ-xCx" customClass="ScottsCoolTextView" customModule="Note_Taker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
