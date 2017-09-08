@@ -24,7 +24,6 @@ class ScottsCoolTextView: UITextView {
     }
     
     
-    
     public var attributeTextHolder = NSMutableAttributedString()
     
     override func paste(_ sender: Any?) {
@@ -57,6 +56,7 @@ class ScottsCoolTextView: UITextView {
             super.paste(sender)
         }
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

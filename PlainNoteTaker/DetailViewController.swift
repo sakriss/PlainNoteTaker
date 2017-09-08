@@ -27,12 +27,18 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         testView.attributedText = text
         testView.becomeFirstResponder()
-        testView.isScrollEnabled = true
+  //      testView.isScrollEnabled = true
+//        testView.isEditable = false
+//        testView.isSelectable = false
         
-        NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        testView.dataDetectorTypes = UIDataDetectorTypes(rawValue: UIDataDetectorTypes.all.rawValue)
+        
+             NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(animateWithKeyboard(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
-  
+        
     }
+
+    
     
     func save(sender: UIBarButtonItem) {
         

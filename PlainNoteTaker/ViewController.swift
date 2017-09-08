@@ -38,6 +38,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.tableFooterView = UIView()
     }
     
+    func textViewDidBeginEditing(_ testView: UITextView) {
+        testView.isEditable = true
+        testView.isSelectable = true
+        testView.dataDetectorTypes = UIDataDetectorTypes(rawValue: 0)
+        
+    }
+    
+    func textViewDidEndEditing(_ testView: UITextView) {
+        testView.isEditable = false
+        testView.isSelectable = false
+        testView.dataDetectorTypes = UIDataDetectorTypes(rawValue: UIDataDetectorTypes.all.rawValue)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if selectedRow == -1 {
